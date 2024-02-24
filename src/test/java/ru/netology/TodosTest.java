@@ -104,7 +104,8 @@ public void shouldAddThreeTasksOfDifferentType() {
         assertEquals(1, result.length);
 
         // Проверяем, что найденная задача та, которую мы ожидали
-        assertEquals(task2, result[0]);
+        Task[] expected = { task2 };
+        assertArrayEquals(expected, result);
     }
 
     @Test
@@ -122,7 +123,8 @@ public void shouldAddThreeTasksOfDifferentType() {
         Task[] result = todos.search("Task 4");
 
         // Проверяем, что результат пустой массив
-        assertEquals(0, result.length);
+        Task[] expected = {}; // Ожидаемый пустой массив
+        assertArrayEquals(expected, result);
     }
 
     @Test
@@ -133,20 +135,25 @@ public void shouldAddThreeTasksOfDifferentType() {
         todos.add(new Task(2, "Task 2"));
         todos.add(new Task(3, "Task 3"));
 
+        Task[] expected = {
+                new Task(1, "Task 1"),
+                new Task(2, "Task 2"),
+                new Task(3, "Task 3")
+        };
+
         Task[] result = todos.search("");
 
-        assertEquals(3, result.length);
-        assertEquals(new Task(1, "Task 1"), result[0]);
-        assertEquals(new Task(2, "Task 2"), result[1]);
-        assertEquals(new Task(3, "Task 3"), result[2]);
+        assertArrayEquals(expected, result);
     }
     @Test
     public void testSearchWithEmptyTodos() {
         Todos todos = new Todos();
 
+        Task[] expected = {};
+
         Task[] result = todos.search("Task 1");
 
-        assertEquals(0, result.length);
+        assertArrayEquals(expected, result);
     }
 
 
