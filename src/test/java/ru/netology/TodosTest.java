@@ -7,54 +7,54 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TodosTest {
 
-@Test
-public void shouldAddThreeTasksOfDifferentType() {
-    SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
+    @Test
+    public void shouldAddThreeTasksOfDifferentType() {
+        SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
 
-    String[] subtasks = { "Молоко", "Яйца", "Хлеб" };
-    Epic epic = new Epic(55, subtasks);
+        String[] subtasks = {"Молоко", "Яйца", "Хлеб"};
+        Epic epic = new Epic(55, subtasks);
 
-    Meeting meeting = new Meeting(
-            555,
-            "Выкатка 3й версии приложения",
-            "Приложение НетоБанка",
-            "Во вторник после обеда"
-    );
+        Meeting meeting = new Meeting(
+                555,
+                "Выкатка 3й версии приложения",
+                "Приложение НетоБанка",
+                "Во вторник после обеда"
+        );
 
-    Todos todos = new Todos();
+        Todos todos = new Todos();
 
-    todos.add(simpleTask);
-    todos.add(epic);
-    todos.add(meeting);
+        todos.add(simpleTask);
+        todos.add(epic);
+        todos.add(meeting);
 
-    Task[] expected = { simpleTask, epic, meeting };
-    Task[] actual = todos.findAll();
-    assertArrayEquals(expected, actual);
-}
+        Task[] expected = {simpleTask, epic, meeting};
+        Task[] actual = todos.findAll();
+        assertArrayEquals(expected, actual);
+    }
 
-@Test
-    public void meetingTestMatches(){
-    Meeting meeting = new Meeting(
-            5,
-            "New Progect Test",
-            "Приложение Нетологии",
-            "Во вторник после обеда"
-    );
+    @Test
+    public void meetingTestMatches() {
+        Meeting meeting = new Meeting(
+                5,
+                "New Progect Test",
+                "Приложение Нетологии",
+                "Во вторник после обеда"
+        );
 
-    String query1 = "Во вторник";
-    assertTrue(meeting.matches(query1));
+        String query1 = "Во вторник";
+        assertTrue(meeting.matches(query1));
 
-    String query2 = "Test";
-    assertTrue(meeting.matches(query2));
+        String query2 = "Test";
+        assertTrue(meeting.matches(query2));
 
-    String query3 = "версия приложения";
-    Assertions.assertFalse(meeting.matches(query3));
+        String query3 = "версия приложения";
+        Assertions.assertFalse(meeting.matches(query3));
 
     }
 
     @Test
-    public void simpleTaskTestMatches(){
-    SimpleTask simpleTask = new SimpleTask(12, "Выполнить дз к курсу");
+    public void simpleTaskTestMatches() {
+        SimpleTask simpleTask = new SimpleTask(12, "Выполнить дз к курсу");
 
         String query1 = "к";
         assertTrue(simpleTask.matches(query1));
@@ -68,8 +68,8 @@ public void shouldAddThreeTasksOfDifferentType() {
     }
 
     @Test
-    public void epicTestMatches(){
-        Epic epic = new Epic(111, new String[] {
+    public void epicTestMatches() {
+        Epic epic = new Epic(111, new String[]{
                 "Task1",
                 "Task2",
                 "Task3"
@@ -104,7 +104,7 @@ public void shouldAddThreeTasksOfDifferentType() {
         assertEquals(1, result.length);
 
         // Проверяем, что найденная задача та, которую мы ожидали
-        Task[] expected = { task2 };
+        Task[] expected = {task2};
         assertArrayEquals(expected, result);
     }
 
@@ -145,6 +145,7 @@ public void shouldAddThreeTasksOfDifferentType() {
 
         assertArrayEquals(expected, result);
     }
+
     @Test
     public void testSearchWithEmptyTodos() {
         Todos todos = new Todos();
@@ -155,8 +156,6 @@ public void shouldAddThreeTasksOfDifferentType() {
 
         assertArrayEquals(expected, result);
     }
-
-
 
 
 }

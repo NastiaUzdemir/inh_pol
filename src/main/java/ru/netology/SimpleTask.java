@@ -14,7 +14,7 @@ public class SimpleTask extends Task {
 
     @Override
     public boolean matches(String query) {
-        if (query == null){
+        if (query == null) {
             return false;
         }
         if (title.contains(query)) {
